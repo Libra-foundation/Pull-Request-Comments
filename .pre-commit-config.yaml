@@ -5,3 +5,12 @@ repos:
       - id: poetry-export
       - id: poetry-export
         args : ["-f", "requirements.txt", "-o", "requirements-dev.txt", "--with", "dev"]
+  - repo: https://github.com/pre-commit/mirrors-autopep8
+    rev: 'v2.0.0'
+    hooks:
+    -   id: autopep8
+  - repo: https://github.com/PyCQA/docformatter
+    rev: v1.5.0
+    hooks:
+      - id: docformatter
+        args: ["--in-place", "--config", "./pyproject.toml"]

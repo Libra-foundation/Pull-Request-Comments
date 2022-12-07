@@ -17,3 +17,12 @@ optional = true
 pre-commit = "^2.20.0"
 pydocstyle = "^6.1.1"
 
+[tool.autopep8]
+max_line_length = 120
+ignore = "W6"
+in-place = true
+recursive = true
+select = ["E2", "E10", "E11", "E122", "E124", "E125", "E127", "E129", "E133", "E3", "E4", "E5", "E7", "W2", "W3"]
+
+[tool.docformatter]
+close-quotes-on-newline = true
