@@ -1,2 +1,5 @@
-hooks:
-  - id: poetry-export
+repos:
+  - repo: https://github.com/python-poetry/poetry
+    rev: '1.2.2'
+    hooks:
+      - id: poetry-export
