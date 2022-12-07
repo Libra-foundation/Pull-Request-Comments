@@ -1,0 +1,2 @@
+hooks:
+  - id: poetry-export
