@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "pull-request-comments"
+version = "0.1.0"
+description = ""
+authors = ["Cyril Obrecht"]
+readme = "README.md"
+packages = [{include = "pull_request_comments"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pygithub = "^1.57"
+
+[tool.poetry.group.dev]
+optional = true
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^2.20.0"
+pydocstyle = "^6.1.1"
+
+[tool.autopep8]
+max_line_length = 120
+ignore = "W6"
+in-place = true
+recursive = true
+select = ["E2", "E10", "E11", "E122", "E124", "E125", "E127", "E129", "E133", "E3", "E4", "E5", "E7", "W2", "W3"]
+
+[tool.docformatter]
+close-quotes-on-newline = true
