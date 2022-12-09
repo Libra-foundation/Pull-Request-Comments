@@ -5,7 +5,7 @@ A GitHub action which adds comments on PRs based on templates.
 ## Usage Example
 
 [`.github/workflows/example.yml`](.github/workflows/example.yml)
-
+ 
 ```yml
 name: Example 
 on:
