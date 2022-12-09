@@ -32,7 +32,6 @@ This module contains the main function of the repository.
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import json
 import os
 import sys
 
@@ -40,15 +39,12 @@ from github import Github, PullRequest
 
 gh = Github(os.getenv("GITHUB_TOKEN"))
 
-with open(os.getenv("GITHUB_EVENT_PATH"), "r", encoding="utf-8") as f:
-    print(json.load(f))
-
 repo = gh.get_repo(os.getenv("GITHUB_REPOSITORY"))
 pr: PullRequest.PullRequest = repo.get_pulls(state="open", sort="created", head=os.getenv("GITHUB_HEAD_REF"))[0]
 
 f_name = os.getenv("INPUT_FILENAME")
 
-with open(os.getenv("GITHUB_EVENT_PATH"), "r", encoding="utf-8") as f:
+with open(f_name, "r", encoding="utf-8") as f:
     comment = f.read()
 
 for existing in pr.get_comments():
