@@ -14,6 +14,8 @@ on:
 
 jobs:
   comment:
+    permissions:
+      pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -26,3 +28,4 @@ jobs:
 ```
  
 The worflow above will comment the content of the template. As of now the worflow does not format template.
+Depending on the configuration of your repositories you might not need to explicitly set the permitions.
