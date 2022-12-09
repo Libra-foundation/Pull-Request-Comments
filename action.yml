@@ -1,0 +1,13 @@
+name: "Pull Request Comments"
+description: "Add comments on PRs based on templates."
+author: "Correlatio"
+inputs:
+  filename:
+    description: "The name of the file holding the template that will be commented"
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+branding:
+  icon: 'git-pull-request'
+  color: 'green'
