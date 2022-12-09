@@ -1,6 +1,6 @@
 # Contributing.
 
-Welcome to the contributing guide of this repository. This documentation will guide you through the setup of the dev environement and give you the needed guidelines to help to ease the accepting of your contribution.
+Welcome to the contributing guide of this repository. This documentation will guide you through the setup of the dev environement and give you some guidelines to help to ease the accepting of your contribution.
 
 ## Setup your development environment.
 
@@ -31,3 +31,7 @@ We use hooks to reformat the code and the documentation as well as to export the
 
 And tada ! Your development enviroment is ready !
 
+## Tips and tricks :
+Don't forget to document your code, your functions etc... </br>
+We make an extensive use of the typing so do not forget to type your variables, parameters etc...
+Try to make your code as lightwait and fas as possible. Since this code wil be meant to run many many times, small optimisations does matter.
