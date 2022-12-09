@@ -1,0 +1,19 @@
+# This is workflow aims to test bleeding edge features ported on the development branch.
+name: Dev test
+
+on:
+  pull_request:
+    branches: [ "development" ]
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Add a comment to the PR
+        uses: Correlatio-company/Pull-Request-Comments@development
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          filename: dev-template.md
