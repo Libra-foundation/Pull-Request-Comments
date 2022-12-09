@@ -6,7 +6,7 @@ name: Exemple
 # This workflow does only support running on PR. 
 on:
   pull_request:
-    branches: [ "main", "devlopement" ]
+    branches: [ "main"]
 
 jobs:
   comment:
