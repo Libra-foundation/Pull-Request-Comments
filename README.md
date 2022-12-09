@@ -24,5 +24,5 @@ jobs:
         with:
           filename: template.md
 ```
-
+ 
 The worflow above will comment the content of the template. As of now the worflow does not format template.
