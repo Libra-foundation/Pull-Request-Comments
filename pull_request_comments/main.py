@@ -39,13 +39,16 @@ from github import Github, PullRequest
 
 gh = Github(os.getenv("GITHUB_TOKEN"))
 
+# Gathering the repo and the pull request.
 repo = gh.get_repo(os.getenv("GITHUB_REPOSITORY"))
 pr: PullRequest.PullRequest = repo.get_pulls(state="open", sort="created", head=os.getenv("GITHUB_HEAD_REF"))[0]
 
+# Getting the tag if defined
 tag = os.getenv("INPUT_TAG")
 
 comments = pr.get_comments()
 
+# If the tag exist we check for comment with the same tag
 if tag != "":
     for existing in comments:
         if existing.body.startswith(tag):
@@ -57,6 +60,7 @@ f_name = os.getenv("INPUT_FILENAME")
 with open(f_name, "r", encoding="utf-8") as f:
     comment = f.read()
 
+# If there is no tag we look for a perfect match.
 if tag == "":
     for existing in comments:
         if existing.body == comment:
