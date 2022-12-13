@@ -45,15 +45,21 @@ pr: PullRequest.PullRequest = repo.get_pulls(state="open", sort="created", head=
 
 # Getting the tag if defined
 tag = os.getenv("INPUT_TAG")
+override = bool(os.getenv("INPUT_OVERRIDE"))
 
 comments = pr.get_comments()
+
+pr_comment = None
 
 # If the tag exist we check for comment with the same tag
 if tag != "":
     for existing in comments:
         if existing.body.startswith(tag):
-            print("A comment with the same tag has been found")
-            sys.exit(0)
+            if override:
+                pr_comment = existing
+            else:
+                print("A comment with the same tag has been found")
+                sys.exit(0)
 
 f_name = os.getenv("INPUT_FILENAME")
 
@@ -66,7 +72,10 @@ if tag == "":
         if existing.body == comment:
             print("The comment has been already added to the pull request.")
             sys.exit(0)
+    pr.create_issue_comment(comment)
 else:
     comment += "\n tag:" + tag
-
-pr.create_issue_comment(comment)
+    if pr_comment is None:
+        pr.create_issue_comment(comment)
+    else:
+        pr_comment.edit(comment)
