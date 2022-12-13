@@ -14,8 +14,9 @@ jobs:
       - uses: actions/checkout@v3
       
       - name: Add a comment to the PR
-        uses: Correlatio-company/Pull-Request-Comments@development
+        uses: Correlatio-company/Pull-Request-Comments@hashColide
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           filename: dev-template.md
+          tag: ${{sha1sum < dev-template.md}}

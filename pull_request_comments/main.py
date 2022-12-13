@@ -42,14 +42,27 @@ gh = Github(os.getenv("GITHUB_TOKEN"))
 repo = gh.get_repo(os.getenv("GITHUB_REPOSITORY"))
 pr: PullRequest.PullRequest = repo.get_pulls(state="open", sort="created", head=os.getenv("GITHUB_HEAD_REF"))[0]
 
+tag = os.getenv("INPUT_TAG")
+
+comments = pr.get_comments()
+
+if tag != "":
+    for existing in comments:
+        if existing.body.startswith(tag):
+            print("A comment with the same tag has been found")
+            sys.exit(0)
+
 f_name = os.getenv("INPUT_FILENAME")
 
 with open(f_name, "r", encoding="utf-8") as f:
     comment = f.read()
 
-for existing in pr.get_comments():
-    if existing.body == comment:
-        print("The comment has been already added to the pull request.")
-        sys.exit(0)
+if tag == "":
+    for existing in comments:
+        if existing.body == comment:
+            print("The comment has been already added to the pull request.")
+            sys.exit(0)
+else:
+    comment += "\n tag:" + tag
 
 pr.create_issue_comment(comment)
