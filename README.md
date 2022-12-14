@@ -67,3 +67,7 @@ jobs:
 
 The workflow above will comment the content of the template `template.md` then, create a new file and will try to comment it. As we are using the same tag for both comment, the second won't be added unless we specify `override: true` as another parameter. If `override` is set top true, the action will edit the previous comment and change its content. This is handy if you want to comment coverage on PR but do not want the PR to be spammed with comments or to have the coverage not up to date.
 The `tag` and `override` arguments are both optional and if omitted the behavior of the action will be the same as in the 1.0. 
+
+## Contributing
+
+see [CONTRIBUTING.md](CONTRIBUTING.md)
