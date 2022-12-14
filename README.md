@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Add a comment to the PR
-        uses: Correlatio-company/Pull-Request-Comments@1.0
+        uses: Correlatio-company/Pull-Request-Comments@V1.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -46,7 +46,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Add a comment to the PR
-        uses: Correlatio-company/Pull-Request-Comments@1.1
+        uses: Correlatio-company/Pull-Request-Comments@V1.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -57,7 +57,7 @@ jobs:
         run: echo "This is a generated text" > templates/temp.md
 
       - name: Try to add another comment to the PR
-        uses: Correlatio-company/Pull-Request-Comments@1.1
+        uses: Correlatio-company/Pull-Request-Comments@V1.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
