@@ -52,10 +52,12 @@ comments = pr.get_comments()
 pr_comment = None
 
 print(tag)
+print(override)
 
 # If the tag exist we check for comment with the same tag
 if tag != "":
     for existing in comments:
+        print(existing.body)
         if existing.body.endswith(tag):
             if override:
                 pr_comment = existing
