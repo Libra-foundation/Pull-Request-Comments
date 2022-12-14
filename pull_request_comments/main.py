@@ -47,12 +47,9 @@ pr: PullRequest.PullRequest = repo.get_pulls(state="open", sort="created", head=
 tag = os.getenv("INPUT_TAG")
 override = bool(os.getenv("INPUT_OVERRIDE"))
 
-comments = pr.get_comments()
+comments = pr.get_issue_comments()
 
 pr_comment = None
-
-print(tag)
-print(override)
 
 # If the tag exist we check for comment with the same tag
 if tag != "":
