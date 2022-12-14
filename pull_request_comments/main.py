@@ -51,6 +51,8 @@ comments = pr.get_comments()
 
 pr_comment = None
 
+print(tag)
+
 # If the tag exist we check for comment with the same tag
 if tag != "":
     for existing in comments:
