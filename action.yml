@@ -5,6 +5,10 @@ inputs:
   filename:
     description: "The name of the file holding the template that will be commented"
     required: true
+  tag:
+    description: "A value used to konw what comment replace. If a comment already has this value as tag then it's content will be replaced by the new content. If omitted this action will perform an exact match on the content of the comment"
+    required: false
+    default: ""
 runs:
   using: 'docker'
   image: 'Dockerfile'

@@ -39,17 +39,44 @@ from github import Github, PullRequest
 
 gh = Github(os.getenv("GITHUB_TOKEN"))
 
+# Gathering the repo and the pull request.
 repo = gh.get_repo(os.getenv("GITHUB_REPOSITORY"))
 pr: PullRequest.PullRequest = repo.get_pulls(state="open", sort="created", head=os.getenv("GITHUB_HEAD_REF"))[0]
+
+# Getting the tag if defined
+tag = os.getenv("INPUT_TAG")
+override = bool(os.getenv("INPUT_OVERRIDE"))
+
+comments = pr.get_issue_comments()
+
+pr_comment = None
+
+# If the tag exist we check for comment with the same tag
+if tag != "":
+    for existing in comments:
+        print(existing.body)
+        if existing.body.endswith(tag):
+            if override:
+                pr_comment = existing
+            else:
+                print("A comment with the same tag has been found")
+                sys.exit(0)
 
 f_name = os.getenv("INPUT_FILENAME")
 
 with open(f_name, "r", encoding="utf-8") as f:
     comment = f.read()
 
-for existing in pr.get_comments():
-    if existing.body == comment:
-        print("The comment has been already added to the pull request.")
-        sys.exit(0)
-
-pr.create_issue_comment(comment)
+# If there is no tag we look for a perfect match.
+if tag == "":
+    for existing in comments:
+        if existing.body == comment:
+            print("The comment has been already added to the pull request.")
+            sys.exit(0)
+    pr.create_issue_comment(comment)
+else:
+    comment += "\n tag:" + tag
+    if pr_comment is None:
+        pr.create_issue_comment(comment)
+    else:
+        pr_comment.edit(comment)
