@@ -54,7 +54,7 @@ pr_comment = None
 # If the tag exist we check for comment with the same tag
 if tag != "":
     for existing in comments:
-        if existing.body.startswith(tag):
+        if existing.body.endswith(tag):
             if override:
                 pr_comment = existing
             else:
