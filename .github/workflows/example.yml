@@ -6,7 +6,7 @@ name: Example
 # This workflow does only support running on PR. 
 on:
   pull_request:
-    branches: [ "main"]
+    branches: ["main"]
 
 jobs:
   comment:
@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v3
       
       - name: Add a comment to the PR
-        uses: Correlatio-company/Pull-Request-Comments@V1.0
+        uses: Libra-foundation/Pull-Request-Comments@V1.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
